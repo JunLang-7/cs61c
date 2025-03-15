@@ -32,7 +32,7 @@ no_exception:
 
 loop_start:
     lw t1 0(a0)
-    bge, t1, s1, loop_continue # if (max_val < a0[i])
+    ble, t1, s1, loop_continue # if (max_val < a0[i])
     addi s1, t1, 0
     addi s0, t0, 0
 
