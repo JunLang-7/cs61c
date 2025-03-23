@@ -1,0 +1,7 @@
+wrong
+1. incorrect using add instead of lw to load the array pointer to the register
+2. incorrect increment the array at 1 byte
+3. not storing t0-t2
+4. incorrcet using la instead of lw
+5. incorrect using lw to load function pointer
+
