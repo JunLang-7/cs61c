@@ -220,6 +220,11 @@ end TCL_Generic;
       <a name="label" val="inst"/>
       <a name="width" val="32"/>
     </comp>
+    <comp lib="0" loc="(350,340)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="inst"/>
+      <a name="width" val="32"/>
+    </comp>
     <comp lib="0" loc="(350,90)" name="Tunnel">
       <a name="facing" val="east"/>
       <a name="label" val="inst"/>
@@ -408,6 +413,43 @@ end TCL_Generic;
       <a name="fanout" val="1"/>
       <a name="incoming" val="32"/>
     </comp>
+    <comp lib="0" loc="(390,340)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit10" val="none"/>
+      <a name="bit11" val="none"/>
+      <a name="bit12" val="none"/>
+      <a name="bit13" val="none"/>
+      <a name="bit14" val="none"/>
+      <a name="bit15" val="0"/>
+      <a name="bit16" val="0"/>
+      <a name="bit17" val="0"/>
+      <a name="bit18" val="0"/>
+      <a name="bit19" val="0"/>
+      <a name="bit2" val="none"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit3" val="none"/>
+      <a name="bit30" val="none"/>
+      <a name="bit31" val="none"/>
+      <a name="bit4" val="none"/>
+      <a name="bit5" val="none"/>
+      <a name="bit6" val="none"/>
+      <a name="bit7" val="none"/>
+      <a name="bit8" val="none"/>
+      <a name="bit9" val="none"/>
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="32"/>
+    </comp>
     <comp lib="0" loc="(410,160)" name="Constant">
       <a name="value" val="0x0"/>
     </comp>
@@ -512,6 +554,11 @@ end TCL_Generic;
       <a name="in_width" val="21"/>
       <a name="out_width" val="32"/>
     </comp>
+    <comp lib="0" loc="(530,340)" name="Bit Extender">
+      <a name="in_width" val="5"/>
+      <a name="out_width" val="32"/>
+      <a name="type" val="zero"/>
+    </comp>
     <comp lib="0" loc="(670,260)" name="Tunnel">
       <a name="label" val="ImmSel"/>
       <a name="width" val="3"/>
@@ -555,6 +602,7 @@ end TCL_Generic;
     <wire from="(350,180)" to="(380,180)"/>
     <wire from="(350,230)" to="(390,230)"/>
     <wire from="(350,290)" to="(370,290)"/>
+    <wire from="(350,340)" to="(390,340)"/>
     <wire from="(350,90)" to="(360,90)"/>
     <wire from="(360,100)" to="(390,100)"/>
     <wire from="(360,90)" to="(360,100)"/>
@@ -573,6 +621,7 @@ end TCL_Generic;
     <wire from="(410,180)" to="(410,190)"/>
     <wire from="(410,180)" to="(420,180)"/>
     <wire from="(410,230)" to="(460,230)"/>
+    <wire from="(410,340)" to="(490,340)"/>
     <wire from="(420,190)" to="(420,200)"/>
     <wire from="(440,180)" to="(460,180)"/>
     <wire from="(440,210)" to="(440,220)"/>
@@ -591,10 +640,13 @@ end TCL_Generic;
     <wire from="(530,140)" to="(530,180)"/>
     <wire from="(530,140)" to="(600,140)"/>
     <wire from="(530,280)" to="(550,280)"/>
+    <wire from="(530,340)" to="(560,340)"/>
     <wire from="(540,150)" to="(540,230)"/>
     <wire from="(540,150)" to="(600,150)"/>
     <wire from="(550,160)" to="(550,280)"/>
     <wire from="(550,160)" to="(600,160)"/>
+    <wire from="(560,170)" to="(560,340)"/>
+    <wire from="(560,170)" to="(600,170)"/>
     <wire from="(620,200)" to="(620,260)"/>
     <wire from="(620,260)" to="(670,260)"/>
     <wire from="(640,160)" to="(690,160)"/>
