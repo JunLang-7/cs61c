@@ -1,24 +1,25 @@
 Scenario 1
-    1.
-    2.
-    3.
+    1. step size in bytes, cache size
+    2. 0.0
+    3. step size(a1), 1
 
 Scenario 2
-    1.
-    2.
-    3.
+    1. 2
+    2. MHHH
+    3. 1.0
 
 Scenario 3
-    1.
-    2.
-    3.
-    4.
-    5.
+    1. 0.50, 0.00, 0.50
+    2. 32, 16
+    3. 16
+    4. rep count(a2)
+    5. =, =, +, =
 
 --- lines below are ignored by the AG ---
 
-Checkoff Question 1:
-Checkoff Question 2:
-Checkoff Question 3:
-Checkoff Question 4:
-Checkoff Question 5:
+Checkoff Question 1: Because the address we access is always mapped to the first block of our cache, and with the direct-mapped cache, the cache has to evict the previous block constantly.
+Checkoff Question 2: step size(a1) and the option(a3)
+Checkoff Question 3: The first miss is cache miss, block replacement, and after that the follow 3 hits are from the block fetch by the first miss.
+Checkoff Question 4: Because after the first repeat, all data of the array has been store in the cache, so the later hit rate is all 1.0, for infinity loop, the result is close to 1.0.
+Checkoff Question 5: We should split the array into equal part in cache size and then we should try to access each part of the array at a time and apply all of the function to that part so we can be completely done with it before moving on, thereby keeping that cache hot in the cache and not having to circle back to it later on! 
+Checkoff Question 6: With more rep count, the first miss in L2 cache fetch the data from memory and thus the latter access in L2 cache will hit.

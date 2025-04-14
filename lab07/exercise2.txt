@@ -1,8 +1,8 @@
-1.
-2.
+1. jki, kji
+2. ikj
 
 --- lines below are ignored by the AG ---
 
-Checkoff Question 1:
-Checkoff Question 2:
-Checkoff Question 3:
+Checkoff Question 1: the inner loop has only 1 strides for both C and A, which help cache hit a lot.
+Checkoff Question 2: the inner loop has n strides for both C and B, which lead to cache miss frequently.
+Checkoff Question 3: the bigger stride in the inner loop, the worse it perform by affecting the hit rate.

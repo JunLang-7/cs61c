@@ -1,20 +1,23 @@
 --- not autograded ---
 
 Part 1
-    blocksize = 20, n = 100: 
-    blocksize = 20, n = 1000: 
-    blocksize = 20, n = 2000: 
-    blocksize = 20, n = 5000: 
-    blocksize = 20, n = 10000: 
+    blocksize = 20, n = 100: 0.005 milliseconds, 0.009 milliseconds
+    blocksize = 20, n = 1000: 1.161 milliseconds, 2.719 milliseconds
+    blocksize = 20, n = 2000: 9.082 milliseconds, 4.236 milliseconds
+    blocksize = 20, n = 5000: 117.172 milliseconds, 42.639 milliseconds
+    blocksize = 20, n = 10000: 647.233 milliseconds, 148.364 milliseconds
 
-    Checkoff Question 1:
-    Checkoff Question 2:
+    Checkoff Question 1: when n = 2000, 5000 and 10000, the cache blocked version of transpose become faster than the non-cache blocked version.
+    Checkoff Question 2: when the matrix size is small, the whole matrix could fit the cache, so will always hit but has a smaller time complexity of O(n^2) than the blocked version of O(n^4). 
+                         Howerver, when bigger, the cache no longer fit all the matrix, which lead to great efficient to blocked version with a big matrix.
 
 Part 2
-    blocksize = 50, n = 10000:
-    blocksize = 100, n = 10000:
-    blocksize = 500, n = 10000:
-    blocksize = 1000, n = 10000:
-    blocksize = 5000, n = 10000:
+    blocksize = 50, n = 10000: 528.795 milliseconds, 81.37 milliseconds
+    blocksize = 100, n = 10000: 628.771 milliseconds, 88.832 milliseconds
+    blocksize = 500, n = 10000: 699.47 milliseconds, 104.007 milliseconds
+    blocksize = 1000, n = 10000: 516.991 milliseconds, 117.122 milliseconds
+    blocksize = 5000, n = 10000: 561.76 milliseconds, 398.427 milliseconds
 
-    Checkoff Question 3:
+    Checkoff Question 3: the accelerate rate increases at the blocksize growing at first, and decreases later.
+                         Because smaller blocksize would make the blocked data fit in the cache, and as the blocksize grows firstly, it makes full use of the spatial locality(cache), 
+                         but as it bigger, it would make the blocked version finally get close to the non-cache blocked version, losing the spatial locality.
