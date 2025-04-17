@@ -1,19 +1,23 @@
 Exercise 1:
-    1.
-    2.
-    3.
+    1. 32
+    2. 1, 9, 0, 9
+    3. No, No 
 
 Exercise 2:
-    1.
+    1. 00, 22, 44, 66, 88, AA, CC, EE, 00, 22
 
 Exercise 3:
-    1.
+    1. Page Size
 
 --- lines below are ignored by the AG ---
 
 Exercise 1 Checkoff Questions:
-    1.
-    2.
+    1. First get the virtual memory address and divide it into two fields: page and offset, then look at the TLB to find if it hits,
+       and if it hits it would immediately return the physical address, once it's TLB miss, it should divide into the PAGE TABLE to look up,
+       if its valid bit is 1, it leads to page hit and fetch the physical memory, otherwise it results in page fault, and the page should 
+       be brought into physical memory from hard disk.
+    2. Because it's its feature: Virtual memory allows programs to access more memory than is available in the real primary memory of the machine.
 
 Exercise 4 Checkoff Question:
-    1.
+    1. Because it has mutiple processes(p1, p2, p3 and p4 are processes), every time when context switch, the TLB would get flushed, 
+       for the virtual memory mapping in every process is different, and after that, new address mapping are not in TLB, resulting to high miss rate.
