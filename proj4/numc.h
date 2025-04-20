@@ -30,4 +30,10 @@ PyObject *Matrix61c_multiply(Matrix61c* self, PyObject *args);
 PyObject *Matrix61c_neg(Matrix61c* self);
 PyObject *Matrix61c_abs(Matrix61c *self);
 PyObject *Matrix61c_pow(Matrix61c *self, PyObject *pow, PyObject *optional);
+/* Helper function */
+int check_key_type(Matrix61c* self, PyObject* key, PyObject** index0, PyObject** index1);
+int boundary_check(PyObject* obj, int bound);
+void get_slices(Matrix61c* self, PyObject* index0, PyObject* index1, PyObject** row_slice, PyObject** col_slice);
+PyObject* matrix61c_from_slice(Matrix61c* self, PyObject* row_slice, PyObject* col_slice);
+int set_matrix61c_from_slice(Matrix61c* self, PyObject* row_slice, PyObject* col_slice, PyObject* v);
 
