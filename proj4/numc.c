@@ -365,7 +365,7 @@ PyObject *Matrix61c_multiply(Matrix61c* self, PyObject *args) {
     Matrix61c* mat61c = (Matrix61c*) mat;
     Matrix61c* result = (Matrix61c*) Matrix61c_new(&Matrix61cType, NULL, NULL);
     matrix* result_mat = NULL;
-    int alloc_failed = allocate_matrix(&result_mat, self->mat->rows, self->mat->cols);
+    int alloc_failed = allocate_matrix(&result_mat, self->mat->rows, mat61c->mat->cols);
     if (alloc_failed != 0) {
         PyErr_SetString(PyExc_RuntimeError, "Allocate matrix failed");
         return NULL;
@@ -382,7 +382,7 @@ PyObject *Matrix61c_multiply(Matrix61c* self, PyObject *args) {
     }
     
     result->mat = result_mat;
-    result->shape = self->shape;
+    result->shape = get_shape(result_mat->rows, result_mat->cols);
     return (PyObject*) result;
 }
 
