@@ -138,8 +138,7 @@ class TestPow(TestCase):
 
 
 class TestGet(TestCase):
-    def test_get(self):
-        # TODO: YOUR CODE HERE
+    def test_small_get(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(2, 2, seed=0)
         rand_row = np.random.randint(dp_mat.shape[0])
         rand_col = np.random.randint(dp_mat.shape[1])
@@ -148,20 +147,74 @@ class TestGet(TestCase):
             round(nc_mat[rand_row][rand_col], decimal_places),
         )
 
-
-class TestSet(TestCase):
-    def test_set(self):
-        # TODO: YOUR CODE HERE
-        dp_mat, nc_mat = rand_dp_nc_matrix(2, 2, seed=0)
+    def test_medium_get(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(25, 20, seed=0)
         rand_row = np.random.randint(dp_mat.shape[0])
         rand_col = np.random.randint(dp_mat.shape[1])
-        self.assertEquals(
+        self.assertEqual(
             round(dp_mat[rand_row][rand_col], decimal_places),
             round(nc_mat[rand_row][rand_col], decimal_places),
         )
 
+    def test_large_get(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(200, 250, seed=0)
+        rand_row = np.random.randint(dp_mat.shape[0])
+        rand_col = np.random.randint(dp_mat.shape[1])
+        self.assertEqual(
+            round(dp_mat[rand_row][rand_col], decimal_places),
+            round(nc_mat[rand_row][rand_col], decimal_places),
+        )
+
+class TestSet(TestCase):
+    def test_small_set(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(2, 2, seed=0)
+        rand_row = np.random.randint(dp_mat.shape[0])
+        rand_col = np.random.randint(dp_mat.shape[1])
+        rand_val = np.random.uniform(-100, 100)
+        dp_mat[rand_row][rand_col] = rand_val
+        nc_mat[rand_row][rand_col] = rand_val
+        self.assertEqual(
+            round(dp_mat[rand_row][rand_col], decimal_places),
+            round(nc_mat[rand_row][rand_col], decimal_places),
+        )
+
+    def test_medium_set(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(25, 20, seed=0)
+        rand_row = np.random.randint(dp_mat.shape[0])
+        rand_col = np.random.randint(dp_mat.shape[1])
+        rand_val = np.random.uniform(-100, 100)
+        dp_mat[rand_row][rand_col] = rand_val
+        nc_mat[rand_row][rand_col] = rand_val
+        self.assertEqual(
+            round(dp_mat[rand_row][rand_col], decimal_places),
+            round(nc_mat[rand_row][rand_col], decimal_places),
+        )
+    
+    def test_large_set(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(200, 250, seed=0)
+        rand_row = np.random.randint(dp_mat.shape[0])
+        rand_col = np.random.randint(dp_mat.shape[1])
+        rand_val = np.random.uniform(-100, 100)
+        dp_mat[rand_row][rand_col] = rand_val
+        nc_mat[rand_row][rand_col] = rand_val
+        self.assertEqual(
+            round(dp_mat[rand_row][rand_col], decimal_places),
+            round(nc_mat[rand_row][rand_col], decimal_places),
+        )
 
 class TestShape(TestCase):
-    def test_shape(self):
+    def test_square_shape(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(2, 2, seed=0)
+        self.assertTrue(dp_mat.shape == nc_mat.shape)
+
+    def test_1d_shape(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(2, 1, seed=0)
+        self.assertTrue(dp_mat.shape == nc_mat.shape)
+
+    def test_rect_shape(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(20, 3, seed=0)
+        self.assertTrue(dp_mat.shape == nc_mat.shape)
+
+    def test_large_shape(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(200, 250, seed=0)
         self.assertTrue(dp_mat.shape == nc_mat.shape)
