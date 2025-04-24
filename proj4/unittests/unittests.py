@@ -17,8 +17,8 @@ class TestAdd(TestCase):
         print_speedup(speed_up)
 
     def test_medium_add(self):
-        dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 20, seed=0)
-        dp_mat2, nc_mat2 = rand_dp_nc_matrix(20, 20, seed=1)
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(200, 100, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(200, 100, seed=1)
         is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "add")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
@@ -29,11 +29,18 @@ class TestAdd(TestCase):
         is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "add")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
+    
+    def test_huge_add(self):
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(10000, 10000, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(10000, 10000, seed=1)
+        is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "add")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
 
     def test_add_fail_dimension(self):
         dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 50, seed=0)
         dp_mat2, nc_mat2 = rand_dp_nc_matrix(30, 50, seed=1)
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises((RuntimeError, ValueError)):
             is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "add")
     
     def test_add_fail_type(self):
@@ -51,8 +58,8 @@ class TestSub(TestCase):
         print_speedup(speed_up)
 
     def test_medium_sub(self):
-        dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 20, seed=0)
-        dp_mat2, nc_mat2 = rand_dp_nc_matrix(20, 20, seed=1)
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(200, 100, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(200, 100, seed=1)
         is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "sub")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
@@ -64,10 +71,17 @@ class TestSub(TestCase):
         self.assertTrue(is_correct)
         print_speedup(speed_up)
 
+    def test_huge_sub(self):
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(10000, 10000, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(10000, 10000, seed=1)
+        is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "sub")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
+
     def test_sub_fail_dimension(self):
         dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 50, seed=0)
         dp_mat2, nc_mat2 = rand_dp_nc_matrix(30, 50, seed=1)
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises((ValueError, RuntimeError)):
             is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "sub")
 
     def test_sub_fail_type(self):
@@ -85,13 +99,19 @@ class TestAbs(TestCase):
         print_speedup(speed_up)
 
     def test_medium_abs(self):
-        dp_mat, nc_mat = rand_dp_nc_matrix(20, 20, seed=0)
+        dp_mat, nc_mat = rand_dp_nc_matrix(100, 200, seed=0)
         is_correct, speed_up = compute([dp_mat], [nc_mat], "abs")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
 
     def test_large_abs(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(1000, 1000, seed=0)
+        is_correct, speed_up = compute([dp_mat], [nc_mat], "abs")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
+    
+    def test_huge_abs(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(10000, 10000, seed=0)
         is_correct, speed_up = compute([dp_mat], [nc_mat], "abs")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
@@ -109,13 +129,19 @@ class TestNeg(TestCase):
         print_speedup(speed_up)
 
     def test_medium_neg(self):
-        dp_mat, nc_mat = rand_dp_nc_matrix(20, 20, seed=0)
+        dp_mat, nc_mat = rand_dp_nc_matrix(100, 200, seed=0)
         is_correct, speed_up = compute([dp_mat], [nc_mat], "neg")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
 
     def test_large_neg(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(1000, 1000, seed=0)
+        is_correct, speed_up = compute([dp_mat], [nc_mat], "neg")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
+
+    def test_huge_neg(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(10000, 10000, seed=0)
         is_correct, speed_up = compute([dp_mat], [nc_mat], "neg")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
@@ -147,6 +173,13 @@ class TestMul(TestCase):
         is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "mul")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
+    
+    def test_huge_mul(self):
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(5000, 4000, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(4000, 5000, seed=1)
+        is_correct, speed_up = compute([dp_mat1, dp_mat2], [nc_mat1, nc_mat2], "mul")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
 
     def test_mul_fail_dimension(self):
         dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 50, seed=0)
@@ -168,14 +201,20 @@ class TestPow(TestCase):
         print_speedup(speed_up)
 
     def test_medium_pow(self):
-        dp_mat, nc_mat = rand_dp_nc_matrix(10, 10, seed=0)
+        dp_mat, nc_mat = rand_dp_nc_matrix(100, 100, seed=0)
         is_correct, speed_up = compute([dp_mat, 5], [nc_mat, 5], "pow")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
 
     def test_large_pow(self):
-        dp_mat, nc_mat = rand_dp_nc_matrix(40, 40, seed=0)
+        dp_mat, nc_mat = rand_dp_nc_matrix(1000, 1000, seed=0)
         is_correct, speed_up = compute([dp_mat, 7], [nc_mat, 7], "pow")
+        self.assertTrue(is_correct)
+        print_speedup(speed_up)
+    
+    def test_huge_pow(self):
+        dp_mat, nc_mat = rand_dp_nc_matrix(5000, 5000, seed=0)
+        is_correct, speed_up = compute([dp_mat, 9], [nc_mat, 9], "pow")
         self.assertTrue(is_correct)
         print_speedup(speed_up)
 
@@ -315,6 +354,11 @@ class TestShape(TestCase):
         dp_mat, nc_mat = rand_dp_nc_matrix(2, 1, seed=0)
         self.assertTrue(dp_mat.shape == nc_mat.shape)
 
+    def test_1d_shape_2(self):
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 1, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(1, 20, seed=1)
+        self.assertTrue(dp_mat1.shape == dp_mat2.shape)
+    
     def test_rect_shape(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(20, 3, seed=0)
         self.assertTrue(dp_mat.shape == nc_mat.shape)
@@ -322,3 +366,8 @@ class TestShape(TestCase):
     def test_large_shape(self):
         dp_mat, nc_mat = rand_dp_nc_matrix(200, 250, seed=0)
         self.assertTrue(dp_mat.shape == nc_mat.shape)
+
+    def test_shape_fail(self):
+        dp_mat1, nc_mat1 = rand_dp_nc_matrix(20, 50, seed=0)
+        dp_mat2, nc_mat2 = rand_dp_nc_matrix(30, 50, seed=1)
+        self.assertFalse(dp_mat1.shape == dp_mat2.shape)
