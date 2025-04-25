@@ -57,3 +57,16 @@ referencing the official tutorial to finish the setup script with `Extension` an
 - `TestShape` test shape accuracy
 
 ### Speeding up matrix operations
+
+#### Unrolling and Other Optimizations
+- using `mat->data[i][j] = value` instead of `set(mat, i, j, value)` and `mat->data[i][j]` instead of `get(mat, i, j)` to decrease the cost of function call.
+- using quick pow algorithm instead of the common one.
+- manually unroll the for loop in allocate and the add, sub, neg, abs operation for optimization.
+
+#### SIMD Instructions
+- Using SIMD instruction in the all the operation to vectorize the data with Intel AVX extensions, which is allowed to do SIMD operations on 256 bit values in performing four operations in parallel.
+- When using SIMD instruction in neg and abs, I found that using bit operation `_mm256_xor_pd(mask, val)` and `_mm256_and_pd(~mask, val)` are faster than `_mm256_sub_pd(_mm256_set1_pd(0), val)` and `_mm256_max_pd(val, _mm256_sub_pd(_mm256_set1_pd(0), val))` or using `_mm256_cmp_pd` and then set value.
+
+#### OpenMP
+- Finally using OpenMP to parallelize computation and make sure that none of the different threads overwrites each others’ data with adding `#pragma omp parallel`
+- Note that OpenMP is much more slower than the simple solution when the matrix dimension is small, so a condition branch is important: only when the matrix dimension is greater than a thread called `OPENMP_THREAD` can we use the OpenMP optimization.
