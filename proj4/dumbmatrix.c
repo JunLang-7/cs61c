@@ -176,7 +176,7 @@ void set(matrix *mat, int row, int col, double val) {
 void fill_matrix(matrix *mat, double val) {
     for (int i = 0; i < mat->rows; ++i) {
         for (int j = 0; j < mat->cols; ++j) {
-            mat->data[i][j] = val;
+            set(mat, i, j, val);
         }
     }
 }
@@ -194,7 +194,7 @@ int add_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     }
     for (int i = 0; i < result->rows; ++i) {
         for (int j = 0; j < result->cols; ++j) {
-            result->data[i][j] = mat1->data[i][j] + mat2->data[i][j];
+            set(result, i, j, get(mat1, i, j) + get(mat2, i, j));
         }
     }
     return 0;
@@ -213,7 +213,7 @@ int sub_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     }
     for (int i = 0; i < result->rows; ++i) {
         for (int j = 0; j < result->cols; ++j) {
-            result->data[i][j] = mat1->data[i][j] - mat2->data[i][j];
+            set(result, i, j, get(mat1, i, j) - get(mat2, i, j));
         }
     }
     return 0;
@@ -236,7 +236,7 @@ int mul_matrix(matrix *result, matrix *mat1, matrix *mat2) {
     for (int i = 0; i < result->rows; ++i) {
         for (int k = 0; k < mat1->cols; ++k) {
             for (int j = 0; j < result->cols; ++j) {
-                temp_result->data[i][j] += mat1->data[i][k] * mat2->data[k][j];
+                set(temp_result, i, j, get(temp_result, i, j) + get(mat1, i, k) * get(mat2, k, j));
             }
         }
     }
@@ -260,7 +260,7 @@ int pow_matrix(matrix *result, matrix *mat, int pow) {
 
     for (int i = 0; i < result->rows; ++i) {
         for (int j = 0; j < result->cols; ++j) {
-            result->data[i][j] = i == j;
+            set(result, i, j, i == j);
         }
     }
     int error_code = 0;
@@ -282,7 +282,7 @@ int neg_matrix(matrix *result, matrix *mat) {
     }
     for (int i = 0; i < result->rows; ++i) {
         for (int j = 0; j < result->cols; ++j) {
-            result->data[i][j] = -mat->data[i][j];
+            set(result, i, j, -get(mat, i, j));
         }
     }
     return 0;
@@ -299,7 +299,8 @@ int abs_matrix(matrix *result, matrix *mat) {
     for (int i = 0; i < result->rows; ++i) {
         for (int j = 0; j < result->cols; ++j) {
             double temp;
-            result->data[i][j] = ((temp = mat->data[i][j]) < 0) ? -temp : temp;
+            temp = get(mat, i, j);
+            set(result, i, j, temp < 0 ? -temp : temp);
         }
     }
     return 0;

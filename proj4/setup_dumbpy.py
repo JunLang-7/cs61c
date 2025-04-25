@@ -3,8 +3,8 @@ import sysconfig
 
 
 def main():
-    CFLAGS = ['-g', '-Wall', '-std=c99', '-fopenmp', '-mavx', '-mfma', '-pthread', '-O3']
-    LDFLAGS = ['-fopenmp']
+    CFLAGS = ['-g', '-Wall', '-std=c99']
+    LDFLAGS = []
     dumbpy_module = Extension("dumbpy",
                               sources=["dumbpy.c", "dumbmatrix.c"],
                               extra_compile_args=CFLAGS,
